@@ -1,0 +1,15 @@
+https://www.cnblogs.com/nickchen121/p/11517452.html
+1. go 性能优化地方
+    CPU profile： 获取CPU在寄存器上的数据
+    memory profile： 内存使用报告
+    Block Profiling： goroutines运行使用状态，分享和查找死锁和性能瓶颈
+    Goroutines Profiling： goroutines的使用情况和调用关系
+
+2. 采集性能数据
+   GO 内置标准采集库
+
+    runtime/pprof：采集工具型应用运行数据进行分析
+    net/http/pprof：采集服务型应用运行时数据进行分析
+pprof开启后，每隔一段时间（10ms）就会收集下当前的堆栈信息，获取格格函数占用的CPU以及内存资源；最后通过对这些采样数据进行分析，形成一个性能分析报告。
+
+注意，我们只应该在性能测试的时候才在代码中引入pprof。
