@@ -1,0 +1,35 @@
+new和make的区别？
+    都是开辟内存空间
+        new 返回的是指针类型，初始化默认值
+        make 只能对slice map chan进行初始化，返回的是初始值类型
+
+切片扩容：
+        len()函数求长度，使用内置的cap()函数求切片的容量。
+        切片判断是否为空可以用 s == nil 或者 len(s) ==0 去做判断,最好用len(s) ==0去判断
+        /*
+        	s := make([]int,0,5)
+        	if s == nil {
+        		fmt.Println(" nil 切片为空")
+        	}
+        	if len(s) == 0{
+        		fmt.Println(" len 切片为空")
+        	}
+               //  len 切片为空
+
+        */
+
+        切片扩容 根据 type  len cap 都有关，默认源码扩容2的倍数，当大于1024的时候扩容为原来1/4
+
+切片排序：
+        sort.Ints(a)   sort.type(s)
+
+切片复制：
+        copy 注意源切片和目标切片的  cap容量。
+
+切片插入修改：
+        a[1] = 100 更改index为2的值为100
+        append(desrS,srcS) 切片插入值
+
+切片删除：
+        切片没有删除选项，可以查找删除
+        append(s[:2],s[3:]) 删除索引为2的元素
