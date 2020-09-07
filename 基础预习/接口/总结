@@ -1,1 +1,3 @@
-
+接口（interface）定义了一个对象的行为规范，只定义规范不实现
+interface则是对行为的抽象和封装
+空 interface可以保存任何类型
