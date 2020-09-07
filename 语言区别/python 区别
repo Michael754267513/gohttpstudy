@@ -1,0 +1,3 @@
+区别：
+     class interface   go里面没有class的概念，class是对模型的定义和封装，interface则是对行为的抽象和封装
+     type   go语言里面是强类型
