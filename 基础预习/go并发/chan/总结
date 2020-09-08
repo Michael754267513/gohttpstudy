@@ -1,0 +1,3 @@
+chan：
+    带缓冲区 ch := make(chan int) // 可以称为同步  同步通道必须有接受者
+    不带缓冲区 ch := make(chan int,2)// 可以称为异步，可以在chan存放2个值
