@@ -1,8 +1,6 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func f1() int {
 	x := 5
@@ -33,11 +31,11 @@ func f4() (x int) {
 	return 5
 }
 func main() {
-	fmt.Println(f1())
-
+	//fmt.Println(f1())
+	////
 	fmt.Println(f2())
 
-	fmt.Println(f3())
+	//fmt.Println(f3())
 
-	fmt.Println(f4())
+	//fmt.Println(f4())
 }

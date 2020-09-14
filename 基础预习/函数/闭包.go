@@ -9,7 +9,7 @@ func add() func(int) int {
 	var i int = 0
 	return func(a int) int {
 		i++
-		fmt.Println("i: ", i)
+		//fmt.Println("i: ", i)
 		return a + i
 	}
 }
@@ -30,4 +30,10 @@ func main() {
 	fmt.Println(a(1))
 	b := add()
 	fmt.Println(b(1))
+	/*
+		2
+		3
+		2
+	*/
+
 }
