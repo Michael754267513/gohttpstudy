@@ -3,21 +3,14 @@ package main
 import "fmt"
 
 func main() {
-	//var a = make([]int, 5, 10)
-	//for i := 0; i < 10; i++ {
-	//	a = append(a, i)
-	//}
-	//a = append(a,2)
-	//fmt.Println(a)
-	//sort.Ints(a)
-	//fmt.Println(a)
+	s1 := []int{1, 2, 3, 4, 5, 6}
 
-	//s := make([]int,0,1)
-	s := []int{}
-	if s == nil {
-		fmt.Println(" nil 切片为空")
-	}
-	if len(s) == 0 {
-		fmt.Println(" len 切片为空")
-	}
+	s1 = append(s1[:2], s1[3:]...) //删除index为2 的元素
+	fmt.Printf("%v", s1[:])
+	/*
+
+		[1 2 4 5 6]
+
+	*/
+
 }

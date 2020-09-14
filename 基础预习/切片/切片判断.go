@@ -6,6 +6,7 @@ import (
 )
 
 func main() {
+
 	s1 := []int{1, 2, 3, 4, 5}
 	s2 := []int{1, 2, 3, 4, 5}
 
@@ -15,6 +16,21 @@ func main() {
 	} else {
 		fmt.Println("flase")
 	}
+
+	// 判断空切片
+	s1check := make([]int, 0)
+	if len(s1check) == 0 {
+		fmt.Printf("判断空切片\n")
+	}
+
 	fmt.Println(s1[:])
+	/*
+
+	 	true
+		判断空切片
+		[1 2 3 4 5]
+
+
+	*/
 
 }

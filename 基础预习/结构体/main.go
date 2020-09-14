@@ -14,7 +14,6 @@ func main() {
 		{name: "娜扎", age: 23},
 		{name: "大王八", age: 9000},
 	}
-
 	for _, stu := range stus {
 
 		m[stu.name] = &stu // 指针地址

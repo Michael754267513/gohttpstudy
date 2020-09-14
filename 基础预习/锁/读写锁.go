@@ -26,7 +26,6 @@ func main() {
 	var rwm sync.RWMutex
 	for i := 0; i < 3; i++ {
 		go func(i int) {
-			fmt.Println("try to lock read ", i)
 			rwm.RLock()
 			fmt.Println("get locked ", i)
 			i = wirte(i)

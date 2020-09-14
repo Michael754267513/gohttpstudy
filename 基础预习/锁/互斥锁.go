@@ -15,20 +15,30 @@ import (
 */
 func main() {
 	var mutex sync.Mutex
+	var test string
 	fmt.Println("start lock main")
 	mutex.Lock()
-	fmt.Println("get locked main")
 	for i := 1; i <= 3; i++ {
 		go func(i int) {
 			fmt.Println("start lock ", i)
 			mutex.Lock()
+			test = fmt.Sprintf("test %v", i)
 			fmt.Println("get locked ", i)
+			fmt.Printf(test)
 		}(i)
 	}
 
 	time.Sleep(time.Second)
 	fmt.Println("Unlock the lock main")
 	mutex.Unlock()
-	fmt.Println("get unlocked main")
 	time.Sleep(time.Second)
+	/*
+		start lock main
+		start lock  3
+		start lock  1
+		start lock  2
+		Unlock the lock main
+		get locked  3 //解锁后只有一个人会得到
+
+	*/
 }

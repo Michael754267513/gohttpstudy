@@ -70,3 +70,11 @@ payload:
     2. 保护好secret私钥，该私钥非常重要。
     3. 请使用https协议
 
+
+安全问题：
+
+        `"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTk2NDAyMjIsImlkIjoiYWRtaW4iLCJvcmlnX2lhdCI6MTU5OTYzNjYyMn0.2FOkgzTLWBM8HTTK441anYV3Tv5Gfd6xE5PT3QKopdc"`
+        
+        获取的token分三段。分割，在base64在线解密中可以获取到明文(前两段)
+        
+        signature 破解地质：https://github.com/brendan-rius/c-jwt-cracker
