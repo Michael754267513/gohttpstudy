@@ -4,29 +4,31 @@ import "fmt"
 
 // 接口使用场景，支付方式有多种，用同一个接口去实现
 type Action interface {
-	Say()
+	Say(s string) (err error)
 }
 
-type Cat struct {
+type Git struct {
 }
-type Dog struct {
-}
-
-func (action Cat) Say() {
-	fmt.Println("i am cat")
+type Svn struct {
 }
 
-func (action Dog) Say() {
-	fmt.Println("i am dog")
+func (action Git) Say(s string) (err error) {
+	fmt.Println(s)
+	return err
+}
+
+func (action Svn) Say(s string) (err error) {
+	fmt.Println(s)
+	return err
 }
 
 func main() {
-	cat := Cat{}
-	dog := Dog{}
+	git := Git{}
+	svn := Svn{}
 	var A Action
-	A = cat
-	A.Say()
-	A = dog
-	A.Say()
+	A = git
+	A.Say("git")
+	A = svn
+	A.Say("svn")
 
 }
