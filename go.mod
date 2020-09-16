@@ -5,6 +5,7 @@ go 1.14
 require (
 	github.com/allegro/bigcache v1.2.1
 	github.com/appleboy/gin-jwt/v2 v2.6.4 // indirect
+	github.com/asaskevich/govalidator v0.0.0-20200907205600-7a23bdc65eef // indirect
 	github.com/casbin/casbin/v2 v2.11.2
 	github.com/codegangsta/negroni v1.0.0 // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
