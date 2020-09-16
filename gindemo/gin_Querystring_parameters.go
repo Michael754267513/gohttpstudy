@@ -1,6 +1,12 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"log"
+	"net/http"
+	_ "net/http/pprof"
+
+	"github.com/gin-gonic/gin"
+)
 
 func main() {
 	router := gin.Default()
@@ -20,5 +26,8 @@ func main() {
 			namespace: namespace,
 		})
 	})
+	go func() {
+		log.Println(http.ListenAndServe("0.0.0.0:10000", nil))
+	}()
 	router.Run()
 }
