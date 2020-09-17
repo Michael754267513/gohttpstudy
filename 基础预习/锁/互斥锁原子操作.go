@@ -59,7 +59,7 @@ func (a *AtomicCounter) Load() int64 {
 func test(c Counter) {
 	var wg sync.WaitGroup
 	start := time.Now()
-	for i := 0; i < 1000; i++ {
+	for i := 0; i < 200; i++ {
 		wg.Add(1)
 		go func() {
 			c.Inc()
