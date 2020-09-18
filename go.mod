@@ -15,4 +15,6 @@ require (
 	github.com/google/uuid v1.1.2
 	github.com/jinzhu/gorm v1.9.16
 	github.com/pquerna/ffjson v0.0.0-20190930134022-aa0246cd15f7
+	gorm.io/driver/mysql v1.0.1
+	gorm.io/gorm v1.20.1
 )

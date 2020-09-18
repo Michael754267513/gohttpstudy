@@ -27,7 +27,7 @@ func main() {
 	// 唤醒一次
 	cond.Signal()
 	cond.L.Unlock()
-	time.Sleep(time.Second * 1)
+	time.Sleep(time.Second * 5)
 	cond.L.Lock()
 	//唤醒剩下的所有
 	cond.Broadcast()
