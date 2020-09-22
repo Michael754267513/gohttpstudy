@@ -17,6 +17,7 @@ type Project struct {
 
 func main() {
 	var pstringList []Project
+	var pstring Project
 	db, err := config.MysqlClient()
 	if err != nil {
 		fmt.Println(err)
@@ -105,5 +106,10 @@ func main() {
 
 	// joins
 
+	// update 先查找 可以参照where的过滤，更新
+	//db.Model(&pstring).Where("name = ?","t1").Update("name","wpcao")
+	//db.Model(&pstring).Where("id in ?",[]int{8,9}).Updates(Project{Age: 20})
+
 	fmt.Println(pstringList)
+	fmt.Println(pstring)
 }
