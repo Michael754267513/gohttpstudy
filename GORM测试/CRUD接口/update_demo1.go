@@ -12,10 +12,7 @@ func main() {
 		fmt.Println(err)
 		panic("数据库连接错误：")
 	}
-	var users []config.User
-	db.Find(&users)
-	for k, v := range users {
-		fmt.Println(k, v)
-	}
+	var user config.User
+	db.First(&user)
 
 }
