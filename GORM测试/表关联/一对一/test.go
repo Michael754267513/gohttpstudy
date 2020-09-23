@@ -6,21 +6,24 @@ import (
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"gorm.io/gorm/clause"
 )
 
 type One struct {
+	gorm.Model
 	Name string
-	Two  Two `gorm:"-"`
+	Two  Two `gorm:"foreignkey:TwoID;references:id"`
 }
 
 type Two struct {
+	gorm.Model
 	TwoName  string
-	UserName []Username `gorm:"-"`
+	UserName []Username `gorm:"foreignkey:UsernameID;references:id"`
+	TwoID    int
 }
 
 type Username struct {
-	ListName string
+	ListName   string
+	UsernameID int
 }
 
 func main() {
@@ -35,31 +38,42 @@ func main() {
 		&Two{},
 		&Username{},
 	)
-
-	db.Create(&One{
-		Name: "haha",
-		Two: Two{
-			TwoName: "TwoName",
-			UserName: []Username{
-				{ListName: "mama"},
-				{ListName: "baba"},
-			},
-		},
-	})
-	db.Create(&One{
-		Name: "haha1",
-		Two: Two{
-			TwoName: "TwoName1",
-			UserName: []Username{
-				{ListName: "mama1"},
-				{ListName: "baba1"},
-			},
-		},
-	})
+	//
+	//db.Create(&One{
+	//	Name: "haha",
+	//	Two:  Two{
+	//		TwoName:  "TwoName",
+	//		UserName: []Username{
+	//			{ListName: "mama"},
+	//			{ListName: "baba"},
+	//		},
+	//	},
+	//})
+	//db.Create(&One{
+	//	Name: "haha1",
+	//	Two:  Two{
+	//		TwoName:  "TwoName1",
+	//		UserName: []Username{
+	//			{ListName: "mama1"},
+	//			{ListName: "baba1"},
+	//		},
+	//	},
+	//})
 	var one []One
-	db.Preload(clause.Associations).Find(one)
+	////db.Preload(clause.Associations).Find(one)
+	////for _,v := range one {
+	////	jdog,_ := json.Marshal(v)
+	////	fmt.Println(string(jdog))
+	////}
+	//
+	//db.Preload("two").Find(&one)
+	//fmt.Println(one)
+	db.Preload("Two.UserName").Preload("Two").Find(&one, "name", "haha1")
+	//db.Debug().Preload("Two.UserName").Preload("Two").Find(&one,"name","haha1")
+	//db.Raw("").Scan(&one)
 	for _, v := range one {
 		jdog, _ := json.Marshal(v)
 		fmt.Println(string(jdog))
 	}
+
 }
