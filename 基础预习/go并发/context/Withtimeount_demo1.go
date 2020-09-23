@@ -14,11 +14,12 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	start := time.Now()
 	defer cancel()
-	time.Sleep(time.Second * 6)
+	//time.Sleep(time.Second * 6)
 	for {
 		select {
 		case <-time.After(1 * time.Second):
 			fmt.Println("overslept")
+
 		case <-ctx.Done():
 			fmt.Println(ctx.Err()) // prints "context deadline exceeded"
 			end := time.Now()
