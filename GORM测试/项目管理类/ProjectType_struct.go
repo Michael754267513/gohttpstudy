@@ -22,7 +22,7 @@ type Code struct {
 
 // svn git 或者其他版本控制器
 type CodeType struct {
-	CVS string
+	CVS CVS
 }
 
 // springboot tomcat jboss
