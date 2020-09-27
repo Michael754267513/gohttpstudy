@@ -10,7 +10,7 @@ import (
 
 func main() {
 	router := gin.Default()
-	router.GET("/query", func(c *gin.Context) {
+	router.GET("/login", func(c *gin.Context) {
 		name := c.DefaultQuery("name", "haha") //设置查询默认值
 		namespace := c.Query("namespace")
 		c.JSON(200, gin.H{
@@ -18,7 +18,7 @@ func main() {
 			namespace: namespace,
 		})
 	})
-	router.POST("/query", func(c *gin.Context) {
+	router.POST("/login", func(c *gin.Context) {
 		name := c.DefaultQuery("name", "haha") //设置查询默认值
 		namespace := c.Query("namespace")
 		c.JSON(200, gin.H{
