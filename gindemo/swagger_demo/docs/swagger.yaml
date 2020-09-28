@@ -28,4 +28,28 @@ paths:
             type: string
         "500": {}
       summary: 测试
+  /getdemo:
+    get:
+      consumes:
+      - multipart/form-data
+      description: 测试getdemo参数
+      parameters:
+      - description: name
+        in: query
+        name: name
+        required: true
+        type: string
+      - description: age
+        in: query
+        name: age
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: 测试
 swagger: "2.0"

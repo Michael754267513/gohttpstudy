@@ -28,61 +28,64 @@ func main() {
 	docs.SwaggerInfo.Schemes = []string{"http", "https"}
 
 	r := gin.New()
-	r.Use(Cors1())
+	r.Use(Cors())
 	// use ginSwagger middleware to serve the API docs
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
-	r.GET("/get", GET)
+	r.GET("/getdemo", Result)
 
 	r.Run()
 }
 
 // @Summary 测试
-// @Description 测试get参数
-// @Produce  json
+// @Description 测试getdemo参数
+// @Produce  application/json
 // @Accept multipart/form-data
 // @Param name query string true "name"
-// @Success 200 {string} string "{"success":true,"msg":"name"}"
-// @Failure 500
-// @Router /get [get]
-func GET(ctx *gin.Context) {
-	//name := ctx.PostForm("name")
-	//name := ctx.Request.URL.Query().Get("name")
-	name := ctx.Query("name")
-	ctx.JSON(http.StatusOK, Response1{
-		Code: 0,
-		Msg:  "aaaaa",
-		Data: name,
-	})
-
+// @Param age query string true "age"
+// @Success 200 {string} {}
+// @Router /getdemo [GET]
+func Get1(ctx *gin.Context) {
+	Result(ctx)
 }
 
-type Gin struct {
-	ctx *gin.Context
+type User struct {
+	Name string `form:"name"`
+	Age  int    `form:"age"`
 }
 
-type Response1 struct {
+type Response struct {
 	Code int         `json:"code"`
-	Msg  string      `json:"msg"`
+	Msg  error       `json:"msg"`
 	Data interface{} `json:"data"`
 }
 
-func (g *Gin) Response(httpCode, errCode int, data interface{}) {
-	g.ctx.JSON(httpCode, Response1{
-		Code: errCode,
-		//Msg:  e.GetMsg(errCode),
-		Data: data,
-	})
+func Result(ctx *gin.Context) {
+	var people User
+	err := ctx.BindQuery(&people)
+	if err != nil {
+		ctx.JSON(500, Response{
+			Code: 0,
+			Msg:  err,
+			Data: people,
+		})
+	} else {
+		ctx.JSON(200, Response{
+			Code: 0,
+			Msg:  err,
+			Data: people,
+		})
+	}
 }
 
 //跨域
-func Cors1() gin.HandlerFunc {
+func Cors() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		method := c.Request.Method
 
 		c.Header("Access-Control-Allow-Origin", "*")
 		c.Header("Access-Control-Allow-Headers", "Content-Type,AccessToken,X-CSRF-Token, Authorization, Token")
-		c.Header("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
+		c.Header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
 		c.Header("Access-Control-Expose-Headers", "Content-Length, Access-Control-Allow-Origin, Access-Control-Allow-Headers, Content-Type")
 		c.Header("Access-Control-Allow-Credentials", "true")
 
