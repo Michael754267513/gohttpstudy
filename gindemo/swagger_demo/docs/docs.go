@@ -18,13 +18,52 @@ var doc = `{
     "info": {
         "description": "{{.Description}}",
         "title": "{{.Title}}",
-        "contact": {},
-        "license": {},
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "swagger test",
+            "url": "http://www.hzeng.com",
+            "email": "754267513@qq.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
         "version": "{{.Version}}"
     },
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
-    "paths": {}
+    "paths": {
+        "/get": {
+            "get": {
+                "description": "测试get参数",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "测试",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "name",
+                        "name": "name",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"msg\":\"name\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {}
+                }
+            }
+        }
+    }
 }`
 
 type swaggerInfo struct {

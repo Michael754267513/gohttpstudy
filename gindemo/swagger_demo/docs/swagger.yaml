@@ -1,5 +1,31 @@
 info:
-  contact: {}
-  license: {}
-paths: {}
+  contact:
+    email: 754267513@qq.com
+    name: swagger test
+    url: http://www.hzeng.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+paths:
+  /get:
+    get:
+      consumes:
+      - multipart/form-data
+      description: 测试get参数
+      parameters:
+      - description: name
+        in: query
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"msg":"name"}'
+          schema:
+            type: string
+        "500": {}
+      summary: 测试
 swagger: "2.0"

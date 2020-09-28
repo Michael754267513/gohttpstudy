@@ -8,5 +8,10 @@ go get -u github.com/alecthomas/template
 
 swag init  # 生成初始化目录
 
+swag init -g
+
 
 https://github.com/swaggo/swag/blob/master/README_zh-CN.md
+
+1. TypeError: NetworkError when attempting to fetch resource..
+跨域问题
