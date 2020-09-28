@@ -1,0 +1,12 @@
+windows 安装swagger
+
+go get -u github.com/swaggo/swag/cmd/swag
+go get -u github.com/swaggo/gin-swagger
+go get -u github.com/swaggo/files
+go get -u github.com/alecthomas/template
+
+
+swag init  # 生成初始化目录
+
+
+https://github.com/swaggo/swag/blob/master/README_zh-CN.md
