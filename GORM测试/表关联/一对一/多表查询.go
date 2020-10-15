@@ -8,14 +8,14 @@ import (
 type PC struct {
 	gorm.Model
 	Name string
-	PB   PB `gorm:"foreignKey:PCID",ASSOCIATION_FOREIGNKEY:ID"`
+	PB   PB `gorm:"foreignKey:PCID "`
 }
 
 type PB struct {
 	gorm.Model
 	Name string
 	PCID int
-	PA   []PA `gorm:"foreignKey:PAID",ASSOCIATION_FOREIGNKEY:ID"`
+	PA   []PA `gorm:"foreignKey:PAID "`
 }
 
 type PA struct {
