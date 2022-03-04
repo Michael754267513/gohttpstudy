@@ -1,6 +1,6 @@
 module gohttpstudy
 
-go 1.14
+go 1.17
 
 require (
 	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
