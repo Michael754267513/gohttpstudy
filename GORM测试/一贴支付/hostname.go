@@ -35,7 +35,7 @@ type Hostname struct {
 }
 
 func main() {
-	dsn := "root:laoshu@tcp(127.0.0.1:3306)/gorm?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := "root:root@tcp(10.58.206.92:3306)/gva?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
 		Logger: logger.Default.LogMode(logger.Info),
 	})
@@ -43,26 +43,20 @@ func main() {
 		panic("failed to connect database")
 	}
 
-	db.AutoMigrate(&Hosts{}, &Hostname{})
+	//db.AutoMigrate(&Hosts{}, &Hostname{})
 
 	//增
-	db.Create(&Hosts{
-		Namesapce: "risk-air03",
-		Hostname: []Hostname{
-			{Address: "10.148.181.219", Domain: "crypto-host-a"},
-			{Address: "10.148.181.219", Domain: "crypto-host-b"},
-			{Address: "110.148.181.204", Domain: "api.air.gateway.zr.common"},
-			{Address: "110.148.181.201", Domain: "api.air.engine.zr.common"},
-			{Address: "10.148.181.201", Domain: "admin.air.engine.zr.common"},
-			{Address: "10.148.181.201", Domain: "api.air.norm.zr.common"},
-			{Address: "10.148.181.201", Domain: "admin.air.norm.zr.common"},
-			{Address: "10.148.181.203", Domain: "api.1tpayinside.zr.common"},
-		},
-	})
+	//db.Create(&Hosts{
+	//	Namesapce: "onepay-env2",
+	//	Hostname: []Hostname{
+	//		{Address: "10.148.181.201", Domain: "api.air.zr.common"},
+	//	},
+	//})
 
 	// 查
 	var hosts []Hosts
-	db.Preload(clause.Associations).Find(&hosts, 1)
+	//db.Preload(clause.Associations).Find(&hosts).Where("namespace = ?", "risk-air01")
+	db.Preload(clause.Associations).Where("namespace = ?", "risk-air03").Find(&hosts)
 	for _, v := range hosts {
 		host, _ := json.Marshal(v)
 		fmt.Println(string(host))

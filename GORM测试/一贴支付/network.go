@@ -30,6 +30,16 @@ type App struct {
 	Mem           int             `json:"mem"`        // 内存
 	Probe         string          `json:"probe"`      // 检测url 检测返回http code
 	Offline       string          `json:"offline"`    // 服务下线接口
+	Skywalking    bool            `json:"skywalking"`
+	Domain        []Domain        `gorm:"foreignKey:DomainID"`
+}
+
+type Domain struct {
+	Domain      string `json:"domain"`
+	ServiceName string `json:"service_name"`
+	Port        int    `json:"port"`
+	Uri         string `json:"uri"`
+	DomainID    uint   `json:"domain_id"`
 }
 
 type DefaultAppPolicy struct {
@@ -61,6 +71,7 @@ type TestEnv struct {
 	JavaOpts  string `json:"java_opts"`
 }
 
+//
 //type Hosts struct {
 //	gorm.Model
 //	Namesapce 		string 			`json:"namesapce"`
@@ -88,6 +99,7 @@ func main() {
 		&Hostname{},
 		&App{},
 		&NetworkPolicy{},
+		&Domain{},
 		&TestEnv{},
 		&DefaultAppPolicy{},
 		&DefaultNetworkPolicy{},
